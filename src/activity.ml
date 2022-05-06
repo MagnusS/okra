@@ -111,7 +111,7 @@ module Gitlab = struct
     {
       repo = string_of_int v.event_project_id;
       kind = `PR;
-      date = v.event_created_at;
+      date = ISO8601.Permissive.string_of_datetime v.event_created_at;
       url;
       title =
         Fmt.str "%a %s"
@@ -125,7 +125,7 @@ module Gitlab = struct
     {
       repo = string_of_int v.event_project_id;
       kind = `Issue;
-      date = v.event_created_at;
+      date = ISO8601.Permissive.string_of_datetime v.event_created_at;
       url;
       title = Option.value ~default:"Gitlab Issue" v.event_target_title;
       body = Option.value ~default:"Gitlab Issue" v.event_target_title;
